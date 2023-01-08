@@ -1,0 +1,56 @@
+
+<%- include('header') -%>
+    <!-- <% if(listTitle === "Saturday" || listTitle === "Sunday") {%>
+        <h1 style="color: purple"> <%= listTitle %> ToDo List</h1>
+    <% }else{ %>
+        <h1 style="color: blue;"> <%= listTitle %> ToDo List</h1>
+    <% } %> -->
+    
+    <div class="container">
+        <div class="row">
+            <% if(position === "lists"){ %>
+                <div class="col-6">
+                    <form action="/backToList" method="post">
+                        <button type="submit" style="background-color: #A683E3; color: black;" class="btn btn-light btn-list btn-left">All Lists</button>
+                    </form>
+                </div>
+                <div class="col-6">
+                    <form action="/getToWork" method="post">
+                        <button type="submit" style="background-color: #fff; color: black;" class="btn btn-list btn-right">Work</button>
+                    </form>
+                </div>
+            <% } else {%>
+                <div class="col-6">
+                    <form action="/backToList" method="post">
+                        <button type="submit" style="background-color: #fff;" class="btn btn-light btn-list btn-left">All Lists</button>
+                    </form>
+                </div>
+                <div class="col-6">
+                    <form action="/getToWork" method="post">
+                        <button type="submit" style="background-color: #A683E3; color: black;" class="btn  btn-list btn-right">Work</button>
+                    </form>
+                </div>
+            <% } %>
+        </div>
+    </div>
+
+    <div class="box" id="heading">
+        <h1> <%= listTitle %></h1>
+    </div>
+
+    <div class="box">
+        <% for(let i = 0; i < newListItem.length; i++){ %>
+            <div class="item">
+                <input type="checkbox">
+                <p> <%= newListItem[i] %></p>
+            </div>
+        <% } %>
+        <form action="/" method="post" class="item">
+            <input type="text" name="newItem" placeholder="New Item" autocomplete="off">
+            <button type="submit" name="list" value=<%= listTitle %>>+</button>
+        </form>
+    </div>
+
+<%- include('footer') -%>
+
+
